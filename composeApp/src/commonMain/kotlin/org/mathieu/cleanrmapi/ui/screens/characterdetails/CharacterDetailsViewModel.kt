@@ -31,8 +31,8 @@ class CharacterDetailsViewModel :
                         episodes = details.episodes,
                         status = details.status,
                         gender = details.gender,
-                        origin = details.origin,
-                        location = details.location
+                        origin = details.origin.name,
+                        location = details.location.name
                     )
                 }
             }
