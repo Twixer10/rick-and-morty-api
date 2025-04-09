@@ -15,17 +15,23 @@ import androidx.navigation.navArgument
 
 sealed class Destination(val route: String, val arguments: List<NamedNavArgument> = emptyList()) {
 
-    object Characters: Destination(route = "characters")
-    class CharacterDetails(characterId: String = "{characterId}"):
+    object Characters : Destination(route = "characters")
+    class CharacterDetails(characterId: String = "{characterId}") :
         Destination(
             route = "characterDetail/$characterId",
             arguments = listOf(navArgument("characterId") { type = NavType.IntType })
         )
 
-    class EpisodeDetails(episodeId: String = "{episodeId}"):
+    class EpisodeDetails(episodeId: String = "{episodeId}") :
         Destination(
             route = "episodeDetails/$episodeId",
             arguments = listOf(navArgument("episodeId") { type = NavType.IntType })
+        )
+
+    class LocationDetails(locationId: String = "{locationId}") :
+        Destination(
+            route = "locationDetails/$locationId",
+            arguments = listOf(navArgument("locationId") { type = NavType.IntType })
         )
 }
 
