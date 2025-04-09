@@ -15,7 +15,8 @@ fun initKoin(config: KoinAppDeclaration? = null) =
             repositoriesModule,
             databaseModule,
             org.mathieu.cleanrmapi.data.dataStoreModule,
-            org.mathieu.cleanrmapi.data.databaseBuilderModule
+            org.mathieu.cleanrmapi.data.databaseBuilderModule,
+            org.mathieu.cleanrmapi.ui.UiModule,
         )
     }
 
