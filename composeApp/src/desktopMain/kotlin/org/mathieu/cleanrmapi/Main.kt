@@ -1,3 +1,5 @@
+package org.mathieu.cleanrmapi.org.mathieu.cleanrmapi
+
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import org.mathieu.cleanrmapi.initKoin
