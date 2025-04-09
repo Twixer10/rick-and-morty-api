@@ -9,7 +9,8 @@ import org.mathieu.cleanrmapi.ui.core.Destination
 import org.mathieu.cleanrmapi.ui.core.ViewModel
 
 sealed interface CharacterDetailsAction {
-    data class SelectedEpisode(val episode: Episode): CharacterDetailsAction
+    data class SelectedEpisode(val episode: Episode) : CharacterDetailsAction
+    data class SelectedLocation(val locationId: Int) : CharacterDetailsAction
 }
 
 class CharacterDetailsViewModel :
@@ -32,7 +33,8 @@ class CharacterDetailsViewModel :
                         status = details.status,
                         gender = details.gender,
                         origin = details.origin.name,
-                        location = details.location.name
+                        location = details.location.name,
+                        locationId = details.location.id
                     )
                 }
             }
@@ -50,9 +52,12 @@ class CharacterDetailsViewModel :
     }
 
     fun handleAction(action: CharacterDetailsAction) {
-        when(action) {
+        when (action) {
             is CharacterDetailsAction.SelectedEpisode ->
                 sendEvent(Destination.EpisodeDetails(action.episode.id.toString()))
+
+            is CharacterDetailsAction.SelectedLocation ->
+                sendEvent(Destination.LocationDetails(action.locationId.toString()))
         }
     }
 
@@ -72,6 +77,7 @@ sealed interface CharacterDetailsState {
         val gender: CharacterGender,
         val origin: String,
         val location: String,
+        val locationId: Int = -1,
     ) : CharacterDetailsState
 
 }
