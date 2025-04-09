@@ -1,4 +1,4 @@
-package org.mathieu.cleanrmapi.org.mathieu.cleanrmapi
+package org.mathieu.cleanrmapi
 
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
