@@ -13,8 +13,8 @@ import org.mathieu.cleanrmapi.domain.location.LocationPreview
  * @property species The species or classification of the character.
  * @property type Further description or subspecies of the character.
  * @property gender The gender of the character.
- * @property origin The origin location of the character, represented as a name.
- * @property location The current or last known location of the character, represented as a name.
+ * @property origin The origin of the character, represented as a [LocationPreview].
+ * @property location The current location of the character, represented as a [LocationPreview].
  * @property avatarUrl A URL pointing to an avatar or image of the character.
  */
 data class CharacterDetails(
