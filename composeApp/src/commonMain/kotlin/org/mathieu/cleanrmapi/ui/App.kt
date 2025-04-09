@@ -7,6 +7,7 @@ import org.koin.compose.KoinContext
 import org.mathieu.cleanrmapi.ui.core.Destination
 import org.mathieu.cleanrmapi.ui.core.composable
 import org.mathieu.cleanrmapi.ui.screens.characterdetails.CharacterDetailsScreen
+import org.mathieu.cleanrmapi.ui.screens.characterdetails.LocationDetailsScreen
 import org.mathieu.cleanrmapi.ui.screens.characters.CharactersScreen
 import org.mathieu.cleanrmapi.ui.screens.episodedetails.EpisodeDetailsScreen
 
@@ -48,6 +49,15 @@ private fun MainContent() {
                 id = backStackEntry.arguments?.getInt("episodeId") ?: -1
             )
 
+        }
+
+        composable(
+            destination = Destination.LocationDetails()
+        ) {
+            LocationDetailsScreen(
+                navController = navController,
+                id = it.arguments?.getInt("locationId") ?: -1
+            )
         }
 
     }
