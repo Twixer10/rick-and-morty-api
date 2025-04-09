@@ -62,7 +62,7 @@ class LocationDetailsViewModel :
 }
 
 sealed interface LocationDetailsState {
-    object Loading : LocationDetailsState
+    data object Loading : LocationDetailsState
 
     data class Error(val message: String) : LocationDetailsState
 

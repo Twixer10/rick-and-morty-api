@@ -8,6 +8,13 @@ import org.mathieu.cleanrmapi.data.remote.responses.LocationResponse
 
 internal class LocationApi(private val client: HttpClient) {
 
+    /**
+     * Fetches the details of a location with the given ID.
+     *
+     * @param id The unique identifier of the location to retrieve.
+     * @return The [LocationResponse] representing the details of the location.
+     * @throws HttpException if the request fails or if the status code is not [HttpStatusCode.OK].
+     */
     suspend fun getLocation(id: Int): LocationResponse? {
         return client
             .get("location/$id")

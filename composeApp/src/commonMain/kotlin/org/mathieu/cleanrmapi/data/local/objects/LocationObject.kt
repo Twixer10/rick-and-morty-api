@@ -11,6 +11,17 @@ import org.mathieu.cleanrmapi.domain.character.models.Character
 import org.mathieu.cleanrmapi.domain.location.models.Location
 import org.mathieu.cleanrmapi.domain.location.models.LocationPreview
 
+
+/**
+ * Represents a location entity stored in the SQLite database. This object provides fields
+ * necessary to represent all the attributes of a location from the data source.
+ *
+ * @property id Unique identifier of the location.
+ * @property name Name of the location.
+ * @property dimension Dimension of the location.
+ * @property type The type or category of the location.
+ * @property residents Comma-separated list of character IDs residing in this location.
+ */
 @Entity(tableName = RMDatabase.LOCATION_TABLE)
 class LocationObject(
     @PrimaryKey
