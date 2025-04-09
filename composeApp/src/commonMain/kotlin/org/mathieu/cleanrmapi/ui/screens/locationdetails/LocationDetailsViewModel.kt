@@ -1,15 +1,11 @@
 package org.mathieu.cleanrmapi.ui.screens.locationdetails
 
 import org.koin.core.component.inject
-import org.mathieu.cleanrmapi.domain.character.CharacterRepository
 import org.mathieu.cleanrmapi.domain.character.models.Character
-import org.mathieu.cleanrmapi.domain.character.models.CharacterGender
-import org.mathieu.cleanrmapi.domain.character.models.CharacterStatus
-import org.mathieu.cleanrmapi.domain.episode.models.Episode
 import org.mathieu.cleanrmapi.domain.location.LocationRepository
-import org.mathieu.cleanrmapi.domain.location.models.Location
 import org.mathieu.cleanrmapi.ui.core.Destination
 import org.mathieu.cleanrmapi.ui.core.ViewModel
+import org.mathieu.cleanrmapi.ui.core.manager.SoundManager
 
 sealed interface LocationDetailsAction {
     data class SelectCharacter(val character: Character) : LocationDetailsAction
@@ -19,8 +15,11 @@ class LocationDetailsViewModel :
     ViewModel<LocationDetailsState>(LocationDetailsState.Loading) {
 
     private val locationRepository: LocationRepository by inject()
+    private val soundManager : SoundManager by inject()
 
     fun init(locationId: Int) {
+
+        soundManager.play("open")
 
         fetchData(
             source = { locationRepository.getLocation(id = locationId) }
