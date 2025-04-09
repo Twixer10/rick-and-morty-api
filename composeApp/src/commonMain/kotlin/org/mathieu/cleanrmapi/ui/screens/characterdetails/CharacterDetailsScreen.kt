@@ -109,6 +109,7 @@ private fun Content(
                 state = it,
                 onAction = onAction
             )
+
             CharacterDetailsState.Loading -> {
                 /** TODO: Could display a Loading Animation */
             }
@@ -150,16 +151,19 @@ private object CharacterDetailsContent {
 
             Header(
                 state = state,
-                offsetY = offsetY
+                offsetY = offsetY,
+                onAction = onAction
             )
 
             LazyColumn {
                 itemsIndexed(state.episodes) { index, episode ->
                     if (index == 0) {
-                        Box(modifier = Modifier.onGloballyPositioned { offsetY = it.positionInParent().y })
+                        Box(modifier = Modifier.onGloballyPositioned {
+                            offsetY = it.positionInParent().y
+                        })
                     }
-                    
-                    
+
+
                     EpisodeCard(
                         modifier = Modifier
                             .padding(8.dp)
@@ -183,7 +187,8 @@ private object CharacterDetailsContent {
     @Composable
     private fun Header(
         state: CharacterDetailsState.Loaded,
-        offsetY: Float
+        offsetY: Float,
+        onAction: (CharacterDetailsAction) -> Unit
     ) {
 
         val density = LocalDensity.current
@@ -219,7 +224,9 @@ private object CharacterDetailsContent {
                 AdditionalInfo(
                     gender = state.gender,
                     status = state.status,
-                    location = state.location
+                    location = state.location,
+                    locationId = state.locationId,
+                    onAction = onAction
                 )
 
             }
@@ -227,11 +234,14 @@ private object CharacterDetailsContent {
     }
 
 
+    @OptIn(ExperimentalFoundationApi::class)
     @Composable
     private fun AdditionalInfo(
         gender: CharacterGender,
         status: CharacterStatus,
-        location: String
+        location: String,
+        locationId: Int,
+        onAction: (CharacterDetailsAction) -> Unit
     ) = Row(
         modifier = Modifier
             .padding(8.dp)
@@ -250,7 +260,11 @@ private object CharacterDetailsContent {
         Spacer(Modifier.width(16.dp))
 
         IconWithImage(
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+                .weight(1f)
+                .clickable {
+                    onAction(CharacterDetailsAction.SelectedLocation(locationId = locationId))
+                },
             imageVector = Icons.Rounded.Home, text = location
         )
 
