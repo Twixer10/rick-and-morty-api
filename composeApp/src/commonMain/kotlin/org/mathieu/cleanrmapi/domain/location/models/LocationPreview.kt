@@ -1,4 +1,4 @@
-package org.mathieu.cleanrmapi.domain.location
+package org.mathieu.cleanrmapi.domain.location.models
 
 /**
  * Represents a minimal information from Location object.
