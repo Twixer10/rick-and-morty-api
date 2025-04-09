@@ -54,7 +54,7 @@ class LocationDetailsViewModel :
     fun handleAction(action: LocationDetailsAction) {
         when (action) {
             is LocationDetailsAction.SelectCharacter ->
-                sendEvent(Destination.EpisodeDetails(action.character.id.toString()))
+                sendEvent(Destination.CharacterDetails(action.character.id.toString()))
         }
     }
 
